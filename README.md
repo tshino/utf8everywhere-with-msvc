@@ -2,7 +2,7 @@
 
 常にUTF-8を使おうという [UTF-8 Everywhere](http://utf8everywhere.org/) を実践することは、以前のWindowsではなかなか面倒でした。例えば、APIを呼ぶところでいちいちchar型とwchar_t型の文字列の変換を書く必要がありました。
 
-そこにWindows 10のバージョン1903で[プロセスごとにActiveCodePageを変える機能](https://learn.microsoft.com/ja-jp/windows/apps/design/globalizing/use-utf8-code-page)が登場しました。これまではWindowsのAPIでchar型の文字列を指定する場合、日本語Windowsなら通常常にShift-JISが使われていましたが、ActiveCodePageをUTF-8に変更することでUTF-8が使えるようになります。
+そこにWindows 10のバージョン1903で[プロセスごとにActiveCodePageを変える機能](https://learn.microsoft.com/ja-jp/windows/apps/design/globalizing/use-utf8-code-page)が登場しました。これまではWindowsのAPIでchar型の文字列を指定する場合、日本語Windowsなら通常常にShift_JISが使われていましたが、ActiveCodePageをUTF-8に変更することでUTF-8が使えるようになります。
 
 このリポジトリは、そのことを確認するために書いたサンプルコードです。
 `main`関数の引数がUTF-8になり、`ifstream`に指定するファイルパスでもUTF-8が使えました。
