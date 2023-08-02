@@ -34,7 +34,7 @@ int main(int argc, char** argv)
         std::cout << "argv[1] = " << argv[1] << std::endl;
     }
 
-    // UTF-8なので基本的に漢字は1文字3バイト
+    // UTF-8なのでほとんどの漢字は1文字3バイト（2文字なので6と表示される）
     std::string kanji = "漢字";
     std::cout << "The length of \"漢字\" is " << kanji.size() << "." << std::endl;
 
