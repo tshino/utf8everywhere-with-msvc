@@ -97,12 +97,16 @@ Opened the file "<kanji>.txt" successfully.
 
 これで、`main`関数の引数や`ifstream`で指定するファイルパスなどでUTF-8が使えるようになります。
 
+参考: [Windows アプリで UTF-8 コード ページを使用する - Windows apps | Microsoft Learn](https://learn.microsoft.com/ja-jp/windows/apps/design/globalizing/use-utf8-code-page)
+
 
 ### 2. コンパイラオプション
 
-Visual Studioでプロジェクトのプロパティを開き、構成プロパティにある「C/C++ >> コマンドライン >> 追加のオプション」という自由記入欄に `/utf-8` と追記します。
+Visual Studioでプロジェクトのプロパティを開き、**[構成プロパティ] ≫ [C/C++] ≫ [コマンドライン]** というプロパティページにある **[追加のオプション]** という自由記入欄に `/utf-8` と追記します。
 
 これで、ソースファイルの文字コードがデフォルトでUTF-8と認識されるようになります。以前はUTF-8のソースを認識させるためにはBOMを付ける必要がありましたが、これでBOMは不要になりました。また、`u8`を付けていない普通の文字列リテラルもUTF-8としてコンパイルされるようになります。
+
+参考: [/utf-8 (ソースおよび実行文字セットを UTF-8 に設定する) | Microsoft Learn](https://learn.microsoft.com/ja-jp/cpp/build/reference/utf-8-set-source-and-executable-character-sets-to-utf-8?view=msvc-170)
 
 
 ### 3. 実行時のロケール設定
@@ -123,6 +127,9 @@ int main(int argc, char** argv)
 これにより、コンソール出力が文字化けしないで表示されるようになりました。
 
 ## 変更履歴
+
+### 2023-08-02
+- Microsoftの解説記事へのリンクを追加。
 
 ### 2023-07-23
 - CMakeLists.txt を追加。
