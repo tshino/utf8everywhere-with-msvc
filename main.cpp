@@ -8,8 +8,8 @@
 int main(int argc, char** argv)
 {
     #ifdef _WIN32
-    // UTF-8のコンソール出力のために必要
-    std::locale::global(std::locale(""));
+    // 標準ライブラリのロケールをUTF-8にする
+    std::locale::global(std::locale(".UTF8"));
     #endif
 
     // u8プレフィクスは不要

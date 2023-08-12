@@ -21,8 +21,8 @@
 int main(int argc, char** argv)
 {
     #ifdef _WIN32
-    // UTF-8のコンソール出力のために必要
-    std::locale::global(std::locale(""));
+    // 標準ライブラリのロケールをUTF-8にする
+    std::locale::global(std::locale(".UTF8"));
     #endif
 
     // u8プレフィクスは不要
@@ -118,7 +118,7 @@ Visual Studioでプロジェクトのプロパティを開き、**[構成プロ�
 
 int main(int argc, char** argv)
 {
-    std::locale::global(std::locale(""));
+    std::locale::global(std::locale(".UTF8"));
 
     ...
 }
@@ -126,7 +126,12 @@ int main(int argc, char** argv)
 
 これにより、コンソール出力が文字化けしないで表示されるようになりました。
 
+参考: [setlocaleのUTF-8サポートに関するセクション（setlocale, _wsetlocale | Microsoft Learn）](https://learn.microsoft.com/ja-jp/cpp/c-runtime-library/reference/setlocale-wsetlocale?view=msvc-170#utf-8-support)
+
 ## 変更履歴
+
+### 2023-08-12
+- Microsoftのドキュメントに従い、ロケール名として`""`（結果は実装定義）ではなく`".UTF8"`を指定するように変更。
 
 ### 2023-08-02
 - Microsoftの解説記事へのリンクを追加。
