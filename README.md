@@ -126,6 +126,11 @@ int main(int argc, char** argv)
 
 これにより、コンソール出力が文字化けしないで表示されるようになりました。
 
+この1行は標準C++ライブラリのグローバルロケールをデフォルトのものから`".UTF8"`という名前のロケールに変更します。
+内部では`setlocale()`が呼び出されて標準Cライブラリのロケールも変更されます。
+
+なお`".UTF8"`というロケール名が使えるかどうかは環境依存なので、Windows以外の環境では呼ばないように`#ifdef _WIN32`を付けた方が良さそうです。
+
 参考: [setlocaleのUTF-8サポートに関するセクション（setlocale, _wsetlocale | Microsoft Learn）](https://learn.microsoft.com/ja-jp/cpp/c-runtime-library/reference/setlocale-wsetlocale?view=msvc-170#utf-8-support)
 
 ## 変更履歴
