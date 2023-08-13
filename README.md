@@ -70,7 +70,7 @@ Opened the file "<kanji>.txt" successfully.
  - [Windows アプリで UTF-8 コード ページを使用する - Windows apps | Microsoft Learn](https://learn.microsoft.com/ja-jp/windows/apps/design/globalizing/use-utf8-code-page)
 
 
-## 設定作業
+## 設定方法
 
 このリポジトリにあるプロジェクト（[project/utf8_with_msvc.sln](project/utf8_with_msvc.sln)）はすでに設定済みなので、そのままビルドして実行すれば動きます。
 
@@ -133,7 +133,23 @@ int main(int argc, char** argv)
 
 参考: [setlocaleのUTF-8サポートに関するセクション（setlocale, _wsetlocale | Microsoft Learn）](https://learn.microsoft.com/ja-jp/cpp/c-runtime-library/reference/setlocale-wsetlocale?view=msvc-170#utf-8-support)
 
+
+## 未解決なこと
+
+### OutputDebugStringA()
+
+デバッガに文字列を送信する `OutputDebugStringA()` 関数はUTF-8文字列を扱えませんでした。
+これはアプリからデバッガ（Visual Studio本体）に送られる文字列が、アプリのコードページ（ActiveCodePage）ではなくシステムのコードページとして扱われるからのようです。
+
+一方 `OutputDebugStringW()` ならUnicode文字列のまま送られるので回避方法として使えます。
+
+参考: [OutputDebugStringA 関数 (debugapi.h) - Win32 apps | Microsoft Learn](https://learn.microsoft.com/ja-jp/windows/win32/api/debugapi/nf-debugapi-outputdebugstringa)
+
+
 ## 変更履歴
+
+### 2023-08-13
+- 「未解決なこと」として `OutputDebugStringA()` の問題を記載。
 
 ### 2023-08-12
 - Microsoftのドキュメントに従い、ロケール名として`""`（結果は実装定義）ではなく`".UTF8"`を指定するように変更。
